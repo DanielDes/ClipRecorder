@@ -9,13 +9,12 @@ import Foundation
 import AppKit
 
 
+/// Reads and writes new value to the system general pasteboard.
 class ClipManager {
     private var generalClipboard : NSPasteboard
-    private var storedStrings : [String] = [String]()
     
     init() {
         self.generalClipboard = NSPasteboard.general
-        
     }
     
     func readCurrentElement() -> String?{
@@ -30,10 +29,6 @@ class ClipManager {
         return current
     }
     
-    func storeNewValue(string: String){
-        self.storedStrings.append(string)
-    }
-    
     func setCurrentValue(string: String){
         self.generalClipboard.prepareForNewContents(with: .currentHostOnly)
         if self.generalClipboard.setString(string, forType: NSPasteboard.PasteboardType.string) {
@@ -41,9 +36,5 @@ class ClipManager {
         } else {
             print("error")
         }
-        
     }
-    
-    
-    
 }
