@@ -36,7 +36,9 @@ class ClipBoardMenu: NSMenu {
     
     private func setInitialOptions(){
         self.delegate = MenuDelegate.delegate
-        self.firstOption = NSMenuItem(title: "Save \"\(clipboardString)\"", action: #selector(saveCurrentValue), keyEquivalent: "")
+        self.firstOption = NSMenuItem(title: "Save \"\(clipboardString)\"", action: #selector(saveCurrentValue), keyEquivalent: "1")
+
+        self.firstOption.keyEquivalentModifierMask = NSEvent.ModifierFlags(arrayLiteral: [.option,.shift])
         self.firstOption.target = self
         self.addItem(firstOption)
         self.addItem(NSMenuItem.separator())
@@ -44,6 +46,10 @@ class ClipBoardMenu: NSMenu {
 //        self.addItem(NSMenuItem.separator())
 //        self.addItem(withTitle: "Personalize", action: nil, keyEquivalent: "")
         
+        self.addItem(NSMenuItem.separator())
+        let exitOptionItem = NSMenuItem(title: "Exit", action: #selector(exitApp(_:)), keyEquivalent: "")
+        exitOptionItem.target = self
+        self.addItem(exitOptionItem)
         
         self.currentString = clipboardString
         
@@ -82,6 +88,9 @@ class ClipBoardMenu: NSMenu {
         let title = sender.title
         print("Setting title \(title)")
         CBManager.setCurrentValue(string: title)
+    }
+    @objc func exitApp(_ sender: NSMenuItem){
+        NSApplication.shared.terminate(self)
     }
 }
 
