@@ -41,8 +41,8 @@ class ClipBoardMenu: NSMenu {
         self.addItem(firstOption)
         self.addItem(NSMenuItem.separator())
         
-        self.addItem(NSMenuItem.separator())
-        self.addItem(withTitle: "Personalize", action: nil, keyEquivalent: "")
+//        self.addItem(NSMenuItem.separator())
+//        self.addItem(withTitle: "Personalize", action: nil, keyEquivalent: "")
         
         
         self.currentString = clipboardString
