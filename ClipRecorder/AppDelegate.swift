@@ -15,7 +15,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to initialize your application
         self.statusItem.button?.title = "CB Recorder!"
         self.statusItem.menu = ClipBoardMenu(title: "CB")
-        self.statusItem.menu?.addItem(withTitle: "Test", action: #selector(test), keyEquivalent: "")
         
     }
 

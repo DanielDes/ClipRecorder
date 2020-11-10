@@ -34,6 +34,16 @@ class ClipManager {
         self.storedStrings.append(string)
     }
     
+    func setCurrentValue(string: String){
+        self.generalClipboard.prepareForNewContents(with: .currentHostOnly)
+        if self.generalClipboard.setString(string, forType: NSPasteboard.PasteboardType.string) {
+            print("done")
+        } else {
+            print("error")
+        }
+        
+    }
+    
     
     
 }
