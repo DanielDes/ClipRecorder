@@ -1,0 +1,343 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C14F0889255A26EF00E237E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14F0888255A26EF00E237E8 /* AppDelegate.swift */; };
+		C14F088B255A26EF00E237E8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14F088A255A26EF00E237E8 /* ViewController.swift */; };
+		C14F088D255A26F100E237E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C14F088C255A26F100E237E8 /* Assets.xcassets */; };
+		C14F0890255A26F100E237E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C14F088E255A26F100E237E8 /* Main.storyboard */; };
+		C14F089A255A271300E237E8 /* ClipManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14F0899255A271300E237E8 /* ClipManager.swift */; };
+		C14F089D255A307000E237E8 /* ClipBoardMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14F089C255A307000E237E8 /* ClipBoardMenu.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		C14F0885255A26EF00E237E8 /* ClipRecorder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClipRecorder.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C14F0888255A26EF00E237E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C14F088A255A26EF00E237E8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C14F088C255A26F100E237E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C14F088F255A26F100E237E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C14F0891255A26F100E237E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C14F0892255A26F100E237E8 /* ClipRecorder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ClipRecorder.entitlements; sourceTree = "<group>"; };
+		C14F0899255A271300E237E8 /* ClipManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipManager.swift; sourceTree = "<group>"; };
+		C14F089C255A307000E237E8 /* ClipBoardMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipBoardMenu.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C14F0882255A26EF00E237E8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C14F087C255A26EF00E237E8 = {
+			isa = PBXGroup;
+			children = (
+				C14F0887255A26EF00E237E8 /* ClipRecorder */,
+				C14F0886255A26EF00E237E8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C14F0886255A26EF00E237E8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C14F0885255A26EF00E237E8 /* ClipRecorder.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C14F0887255A26EF00E237E8 /* ClipRecorder */ = {
+			isa = PBXGroup;
+			children = (
+				C14F0888255A26EF00E237E8 /* AppDelegate.swift */,
+				C14F089C255A307000E237E8 /* ClipBoardMenu.swift */,
+				C14F0899255A271300E237E8 /* ClipManager.swift */,
+				C14F088A255A26EF00E237E8 /* ViewController.swift */,
+				C14F088C255A26F100E237E8 /* Assets.xcassets */,
+				C14F088E255A26F100E237E8 /* Main.storyboard */,
+				C14F0891255A26F100E237E8 /* Info.plist */,
+				C14F0892255A26F100E237E8 /* ClipRecorder.entitlements */,
+			);
+			path = ClipRecorder;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C14F0884255A26EF00E237E8 /* ClipRecorder */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C14F0895255A26F100E237E8 /* Build configuration list for PBXNativeTarget "ClipRecorder" */;
+			buildPhases = (
+				C14F0881255A26EF00E237E8 /* Sources */,
+				C14F0882255A26EF00E237E8 /* Frameworks */,
+				C14F0883255A26EF00E237E8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ClipRecorder;
+			productName = ClipRecorder;
+			productReference = C14F0885255A26EF00E237E8 /* ClipRecorder.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C14F087D255A26EF00E237E8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1200;
+				LastUpgradeCheck = 1200;
+				TargetAttributes = {
+					C14F0884255A26EF00E237E8 = {
+						CreatedOnToolsVersion = 12.0.1;
+					};
+				};
+			};
+			buildConfigurationList = C14F0880255A26EF00E237E8 /* Build configuration list for PBXProject "ClipRecorder" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C14F087C255A26EF00E237E8;
+			productRefGroup = C14F0886255A26EF00E237E8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C14F0884255A26EF00E237E8 /* ClipRecorder */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C14F0883255A26EF00E237E8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C14F088D255A26F100E237E8 /* Assets.xcassets in Resources */,
+				C14F0890255A26F100E237E8 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C14F0881255A26EF00E237E8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C14F088B255A26EF00E237E8 /* ViewController.swift in Sources */,
+				C14F0889255A26EF00E237E8 /* AppDelegate.swift in Sources */,
+				C14F089A255A271300E237E8 /* ClipManager.swift in Sources */,
+				C14F089D255A307000E237E8 /* ClipBoardMenu.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C14F088E255A26F100E237E8 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C14F088F255A26F100E237E8 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C14F0893255A26F100E237E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C14F0894255A26F100E237E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		C14F0896255A26F100E237E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ClipRecorder/ClipRecorder.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = RRULW6ZM98;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = ClipRecorder/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.danieldesan.ClipRecorder;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		C14F0897255A26F100E237E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ClipRecorder/ClipRecorder.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = RRULW6ZM98;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = ClipRecorder/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.danieldesan.ClipRecorder;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C14F0880255A26EF00E237E8 /* Build configuration list for PBXProject "ClipRecorder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C14F0893255A26F100E237E8 /* Debug */,
+				C14F0894255A26F100E237E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C14F0895255A26F100E237E8 /* Build configuration list for PBXNativeTarget "ClipRecorder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C14F0896255A26F100E237E8 /* Debug */,
+				C14F0897255A26F100E237E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C14F087D255A26EF00E237E8 /* Project object */;
+}
