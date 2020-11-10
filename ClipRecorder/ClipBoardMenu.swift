@@ -36,7 +36,7 @@ class ClipBoardMenu: NSMenu {
     
     private func setInitialOptions(){
         self.delegate = MenuDelegate.delegate
-        self.firstOption = NSMenuItem(title: "Save \"\(clipboardString)\"", action: #selector(saveCurrentValue), keyEquivalent: "1")
+        self.firstOption = NSMenuItem(title: "Save \"\(clipboardString.truncate(length:30))\"", action: #selector(saveCurrentValue), keyEquivalent: "1")
 
         self.firstOption.keyEquivalentModifierMask = NSEvent.ModifierFlags(arrayLiteral: [.option,.shift])
         self.firstOption.target = self
@@ -57,7 +57,7 @@ class ClipBoardMenu: NSMenu {
     fileprivate func refreshItems(){
         if self.currentString != clipboardString {
             self.currentString = clipboardString
-            self.firstOption.title = "Save \"\(clipboardString)\""
+            self.firstOption.title = "Save \"\(clipboardString.truncate(length: 30))\""
         }
         
         guard didSaveNewValue else {return}
