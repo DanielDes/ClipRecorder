@@ -19,9 +19,12 @@ class ClipBoardMenu: NSMenu {
     private var currentString = "" //Only to compare the displayed string
     private var lastSavedString = "" //Only to know if we stored a new value
     
-    private var customizableCurrentIndex = 1
     
-    private var savedItemsPerIndex : [String:Int] = [String:Int]()
+    private var storedStrings : [String] = [String]()
+    
+    private var storedStringInitialIndex = 2
+    
+    
     private var didSaveNewValue : Bool = false
 
     override init(title: String) {
@@ -40,18 +43,26 @@ class ClipBoardMenu: NSMenu {
 
         self.firstOption.keyEquivalentModifierMask = NSEvent.ModifierFlags(arrayLiteral: [.option,.shift])
         self.firstOption.target = self
+        self.firstOption.tag = 0
         self.addItem(firstOption)
         self.addItem(NSMenuItem.separator())
         
-//        self.addItem(NSMenuItem.separator())
-//        self.addItem(withTitle: "Personalize", action: nil, keyEquivalent: "")
+        self.addItem(NSMenuItem.separator())
+        
+        let preferencesItem = NSMenuItem(title: "Preferences", action: #selector(displayPreferences(_:)), keyEquivalent: "")
+        preferencesItem.target = self
+        preferencesItem.tag = 2
+        self.addItem(preferencesItem)
         
         self.addItem(NSMenuItem.separator())
+        
         let exitOptionItem = NSMenuItem(title: "Exit", action: #selector(exitApp(_:)), keyEquivalent: "")
         exitOptionItem.target = self
+        exitOptionItem.tag = 3
         self.addItem(exitOptionItem)
         
         self.currentString = clipboardString
+        
         
     }
     fileprivate func refreshItems(){
@@ -62,32 +73,45 @@ class ClipBoardMenu: NSMenu {
         
         guard didSaveNewValue else {return}
         
-        let index = savedItemsPerIndex[lastSavedString]!
-        
-        let item = NSMenuItem(title: lastSavedString, action: #selector(setCurrentValue(_:)), keyEquivalent: "")
-        item.target = self
-        self.insertItem(item, at: index)
-        
+//        let index = savedItemsPerIndex[lastSavedString]!
+//
+//        let item = NSMenuItem(title: lastSavedString.truncate(length: 30), action: #selector(setCurrentValue(_:)), keyEquivalent: "")
+//        item.target = self
+//        self.insertItem(item, at: index)
+//
+        for (index,storedString) in storedStrings.enumerated() {
+            guard let item = self.item(at: index + storedStringInitialIndex) else {return}
+            
+            if item.tag == 1{ //The string menu option has already been created
+                item.title = storedString
+            } else {
+                let newItem = NSMenuItem(title:storedString.truncate(length: 30), action:#selector(setCurrentValue(_:)), keyEquivalent: "")
+                newItem.target = self
+                newItem.tag = 1
+                self.insertItem(newItem, at: index + storedStringInitialIndex)
+            }
+            
+        }
         
         didSaveNewValue = false
     }
-    @objc func displayPersonalizacion(_ sender: NSMenuItem){
+    @objc func displayPreferences(_ sender: NSMenuItem){
         print("displaying personlization options")
     }
     
     @objc func saveCurrentValue(_ sender: NSMenuItem){
-        
-        self.CBManager.storeNewValue(string: clipboardString)
-        if let _ = self.savedItemsPerIndex[clipboardString] {return}
-        self.customizableCurrentIndex += 1
-        self.savedItemsPerIndex.updateValue(customizableCurrentIndex, forKey: clipboardString)
+    
+        if self.storedStrings.contains(clipboardString) {return}
         self.didSaveNewValue = true
         self.lastSavedString = clipboardString
+        self.storedStrings.push(newElement: clipboardString, maxTail: 4)
+        print(self.storedStrings)
     }
     @objc func setCurrentValue(_ sender: NSMenuItem){
         let title = sender.title
         print("Setting title \(title)")
         CBManager.setCurrentValue(string: title)
+        
     }
     @objc func exitApp(_ sender: NSMenuItem){
         NSApplication.shared.terminate(self)
