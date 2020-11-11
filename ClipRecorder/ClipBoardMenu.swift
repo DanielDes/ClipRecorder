@@ -39,9 +39,8 @@ class ClipBoardMenu: NSMenu {
     
     private func setInitialOptions(){
         self.delegate = MenuDelegate.delegate
-        self.firstOption = NSMenuItem(title: "Save \"\(clipboardString.truncate(length:30))\"", action: #selector(saveCurrentValue), keyEquivalent: "1")
+        self.firstOption = NSMenuItem(title: "Save \"\(clipboardString.truncate(length:30))\"", action: #selector(saveCurrentValue), keyEquivalent: "")
 
-        self.firstOption.keyEquivalentModifierMask = NSEvent.ModifierFlags(arrayLiteral: [.option,.shift])
         self.firstOption.target = self
         self.firstOption.tag = 0
         self.addItem(firstOption)
@@ -73,19 +72,14 @@ class ClipBoardMenu: NSMenu {
         
         guard didSaveNewValue else {return}
         
-//        let index = savedItemsPerIndex[lastSavedString]!
-//
-//        let item = NSMenuItem(title: lastSavedString.truncate(length: 30), action: #selector(setCurrentValue(_:)), keyEquivalent: "")
-//        item.target = self
-//        self.insertItem(item, at: index)
-//
         for (index,storedString) in storedStrings.enumerated() {
             guard let item = self.item(at: index + storedStringInitialIndex) else {return}
             
             if item.tag == 1{ //The string menu option has already been created
-                item.title = storedString
+                item.title = storedString.truncate(length: 30)
             } else {
-                let newItem = NSMenuItem(title:storedString.truncate(length: 30), action:#selector(setCurrentValue(_:)), keyEquivalent: "")
+                let newItem = NSMenuItem(title:storedString.truncate(length: 30), action:#selector(setCurrentValue(_:)), keyEquivalent: "\(index + 1)")
+                newItem.keyEquivalentModifierMask = NSEvent.ModifierFlags(arrayLiteral: [.option,.shift])
                 newItem.target = self
                 newItem.tag = 1
                 self.insertItem(newItem, at: index + storedStringInitialIndex)
