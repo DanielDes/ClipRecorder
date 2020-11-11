@@ -13,8 +13,9 @@
 		C14F088B255A26EF00E237E8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14F088A255A26EF00E237E8 /* ViewController.swift */; };
 		C14F088D255A26F100E237E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C14F088C255A26F100E237E8 /* Assets.xcassets */; };
 		C14F0890255A26F100E237E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C14F088E255A26F100E237E8 /* Main.storyboard */; };
-		C14F089A255A271300E237E8 /* ClipManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14F0899255A271300E237E8 /* ClipManager.swift */; };
 		C14F089D255A307000E237E8 /* ClipBoardMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14F089C255A307000E237E8 /* ClipBoardMenu.swift */; };
+		C18507CF255C4E6F009E8DD2 /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18507CD255C4E6F009E8DD2 /* EventManager.swift */; };
+		C18507D0255C4E6F009E8DD2 /* ClipManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18507CE255C4E6F009E8DD2 /* ClipManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,8 +28,9 @@
 		C14F088F255A26F100E237E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C14F0891255A26F100E237E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C14F0892255A26F100E237E8 /* ClipRecorder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ClipRecorder.entitlements; sourceTree = "<group>"; };
-		C14F0899255A271300E237E8 /* ClipManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipManager.swift; sourceTree = "<group>"; };
 		C14F089C255A307000E237E8 /* ClipBoardMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipBoardMenu.swift; sourceTree = "<group>"; };
+		C18507CD255C4E6F009E8DD2 /* EventManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
+		C18507CE255C4E6F009E8DD2 /* ClipManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClipManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,17 +72,43 @@
 		C14F0887255A26EF00E237E8 /* ClipRecorder */ = {
 			isa = PBXGroup;
 			children = (
+				C1E70FD5255C4DFF00D8BE2E /* Controllers */,
+				C18507CC255C4E6F009E8DD2 /* Managers */,
 				C1497745255B527000339C75 /* Extensions */,
-				C14F0888255A26EF00E237E8 /* AppDelegate.swift */,
-				C14F089C255A307000E237E8 /* ClipBoardMenu.swift */,
-				C14F0899255A271300E237E8 /* ClipManager.swift */,
-				C14F088A255A26EF00E237E8 /* ViewController.swift */,
+				C18507D2255C4E97009E8DD2 /* Delegates */,
 				C14F088C255A26F100E237E8 /* Assets.xcassets */,
 				C14F088E255A26F100E237E8 /* Main.storyboard */,
 				C14F0891255A26F100E237E8 /* Info.plist */,
 				C14F0892255A26F100E237E8 /* ClipRecorder.entitlements */,
 			);
 			path = ClipRecorder;
+			sourceTree = "<group>";
+		};
+		C18507CC255C4E6F009E8DD2 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				C18507CD255C4E6F009E8DD2 /* EventManager.swift */,
+				C18507CE255C4E6F009E8DD2 /* ClipManager.swift */,
+			);
+			name = Managers;
+			path = ClipRecorder/Managers;
+			sourceTree = SOURCE_ROOT;
+		};
+		C18507D2255C4E97009E8DD2 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				C14F0888255A26EF00E237E8 /* AppDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		C1E70FD5255C4DFF00D8BE2E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C14F089C255A307000E237E8 /* ClipBoardMenu.swift */,
+				C14F088A255A26EF00E237E8 /* ViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,11 +180,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C18507CF255C4E6F009E8DD2 /* EventManager.swift in Sources */,
 				C1497743255B525400339C75 /* String+Truncate.swift in Sources */,
 				C14F088B255A26EF00E237E8 /* ViewController.swift in Sources */,
+				C18507D0255C4E6F009E8DD2 /* ClipManager.swift in Sources */,
 				C14F0889255A26EF00E237E8 /* AppDelegate.swift in Sources */,
 				C1276647255B58C800553686 /* Array+push.swift in Sources */,
-				C14F089A255A271300E237E8 /* ClipManager.swift in Sources */,
 				C14F089D255A307000E237E8 /* ClipBoardMenu.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
