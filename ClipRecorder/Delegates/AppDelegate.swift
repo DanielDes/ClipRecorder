@@ -6,6 +6,8 @@
 //
 
 import Cocoa
+import KeyboardShortcuts
+
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -15,7 +17,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to initialize your application
         self.statusItem.button?.title = "CB Recorder!"
         self.statusItem.menu = ClipBoardMenu(title: "CB")
-        
+
+        ShortCutManager.shared.setUpFunctions()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -28,4 +31,5 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 
 }
+
 

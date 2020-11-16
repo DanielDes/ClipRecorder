@@ -6,6 +6,7 @@
 //
 
 import Cocoa
+import KeyboardShortcuts
 
 class ClipBoardMenu: NSMenu {
     
@@ -52,7 +53,6 @@ class ClipBoardMenu: NSMenu {
         preferencesItem.target = self
         preferencesItem.tag = 2
         self.addItem(preferencesItem)
-        
         self.addItem(NSMenuItem.separator())
         
         let exitOptionItem = NSMenuItem(title: "Exit", action: #selector(exitApp(_:)), keyEquivalent: "")
@@ -62,7 +62,18 @@ class ClipBoardMenu: NSMenu {
         
         self.currentString = clipboardString
         
+        let testShortcutItem = NSMenuItem()
+        testShortcutItem.title = "test"
+        testShortcutItem.action = #selector(testAction(_:))
+        testShortcutItem.setShortcut(for: .testMode)
+        testShortcutItem.target = self
+        self.addItem(testShortcutItem)
         
+        
+    }
+    
+    @objc func testAction(_ sender: NSMenuItem){
+        print("test shortcut")
     }
     fileprivate func refreshItems(){
         if self.currentString != clipboardString {
