@@ -9,7 +9,7 @@ import KeyboardShortcuts
 
 
 extension KeyboardShortcuts.Name {
-    static let testMode = Self("testMode",default: Shortcut(.t,modifiers: [.shift,.option]))
+    
     static let default1 = Self("default1",default: Shortcut(.one ,modifiers:[.shift,.option]))
     static let default2 = Self("default2",default: Shortcut(.two,modifiers:[.shift,.option]))
     static let default3 = Self("default3",default: Shortcut(.three,modifiers:[.shift,.option]))

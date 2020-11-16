@@ -62,19 +62,12 @@ class ClipBoardMenu: NSMenu {
         
         self.currentString = clipboardString
         
-        let testShortcutItem = NSMenuItem()
-        testShortcutItem.title = "test"
-        testShortcutItem.action = #selector(testAction(_:))
-        testShortcutItem.setShortcut(for: .testMode)
-        testShortcutItem.target = self
-        self.addItem(testShortcutItem)
+     
         
         
     }
     
-    @objc func testAction(_ sender: NSMenuItem){
-        print("test shortcut")
-    }
+
     fileprivate func refreshItems(){
         if self.currentString != clipboardString {
             self.currentString = clipboardString
