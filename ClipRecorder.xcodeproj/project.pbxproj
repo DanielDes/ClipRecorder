@@ -16,9 +16,12 @@
 		C14F089D255A307000E237E8 /* ClipBoardMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14F089C255A307000E237E8 /* ClipBoardMenu.swift */; };
 		C18507CF255C4E6F009E8DD2 /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18507CD255C4E6F009E8DD2 /* EventManager.swift */; };
 		C18507D0255C4E6F009E8DD2 /* ClipManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18507CE255C4E6F009E8DD2 /* ClipManager.swift */; };
+		D672400E75FAC374D6C0BC9E /* Pods_ClipRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2058449879A3829C0D7BDF98 /* Pods_ClipRecorder.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2058449879A3829C0D7BDF98 /* Pods_ClipRecorder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClipRecorder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6233057ED0687896E04A37C4 /* Pods-ClipRecorder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClipRecorder.release.xcconfig"; path = "Target Support Files/Pods-ClipRecorder/Pods-ClipRecorder.release.xcconfig"; sourceTree = "<group>"; };
 		C1276646255B58C800553686 /* Array+push.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+push.swift"; sourceTree = "<group>"; };
 		C1497742255B525400339C75 /* String+Truncate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Truncate.swift"; sourceTree = "<group>"; };
 		C14F0885255A26EF00E237E8 /* ClipRecorder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClipRecorder.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -31,6 +34,7 @@
 		C14F089C255A307000E237E8 /* ClipBoardMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipBoardMenu.swift; sourceTree = "<group>"; };
 		C18507CD255C4E6F009E8DD2 /* EventManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
 		C18507CE255C4E6F009E8DD2 /* ClipManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClipManager.swift; sourceTree = "<group>"; };
+		E02DE3EA8EEECECB58FA6643 /* Pods-ClipRecorder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClipRecorder.debug.xcconfig"; path = "Target Support Files/Pods-ClipRecorder/Pods-ClipRecorder.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,12 +42,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D672400E75FAC374D6C0BC9E /* Pods_ClipRecorder.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8F97C1739BC393CF5A3E3310 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E02DE3EA8EEECECB58FA6643 /* Pods-ClipRecorder.debug.xcconfig */,
+				6233057ED0687896E04A37C4 /* Pods-ClipRecorder.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		BAF3619093D5A5AAC6E42998 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2058449879A3829C0D7BDF98 /* Pods_ClipRecorder.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C1497745255B527000339C75 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -58,6 +81,8 @@
 			children = (
 				C14F0887255A26EF00E237E8 /* ClipRecorder */,
 				C14F0886255A26EF00E237E8 /* Products */,
+				8F97C1739BC393CF5A3E3310 /* Pods */,
+				BAF3619093D5A5AAC6E42998 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -118,9 +143,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C14F0895255A26F100E237E8 /* Build configuration list for PBXNativeTarget "ClipRecorder" */;
 			buildPhases = (
+				3388851E2FE7DB62771E2803 /* [CP] Check Pods Manifest.lock */,
 				C14F0881255A26EF00E237E8 /* Sources */,
 				C14F0882255A26EF00E237E8 /* Frameworks */,
 				C14F0883255A26EF00E237E8 /* Resources */,
+				278F298F3E6144F883CAF13B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -174,6 +201,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		278F298F3E6144F883CAF13B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ClipRecorder/Pods-ClipRecorder-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ClipRecorder/Pods-ClipRecorder-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ClipRecorder/Pods-ClipRecorder-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3388851E2FE7DB62771E2803 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ClipRecorder-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C14F0881255A26EF00E237E8 /* Sources */ = {
@@ -321,6 +390,7 @@
 		};
 		C14F0896255A26F100E237E8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E02DE3EA8EEECECB58FA6643 /* Pods-ClipRecorder.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -342,6 +412,7 @@
 		};
 		C14F0897255A26F100E237E8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6233057ED0687896E04A37C4 /* Pods-ClipRecorder.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
