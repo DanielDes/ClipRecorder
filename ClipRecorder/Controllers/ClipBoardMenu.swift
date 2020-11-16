@@ -10,7 +10,7 @@ import KeyboardShortcuts
 
 class ClipBoardMenu: NSMenu {
     
-    private let CBManager = ClipManager()
+    let CBManager = ClipManager.general
     private var firstOption : NSMenuItem!
     
     private var clipboardString : String {
@@ -90,6 +90,7 @@ class ClipBoardMenu: NSMenu {
                 item.title = storedString.truncate(length: 30)
             } else {
                 let newItem = NSMenuItem(title:storedString.truncate(length: 30), action:#selector(setCurrentValue(_:)), keyEquivalent: "\(index + 1)")
+                ShortCutManager.shared.setUpShortcut(index)
                 newItem.keyEquivalentModifierMask = NSEvent.ModifierFlags(arrayLiteral: [.option,.shift])
                 newItem.target = self
                 newItem.tag = 1
@@ -110,6 +111,7 @@ class ClipBoardMenu: NSMenu {
         self.didSaveNewValue = true
         self.lastSavedString = clipboardString
         self.storedStrings.push(newElement: clipboardString, maxTail: 4)
+        self.CBManager.pushNewString(clipboardString)
         print(self.storedStrings)
     }
     @objc func setCurrentValue(_ sender: NSMenuItem){

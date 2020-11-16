@@ -13,9 +13,13 @@ import AppKit
 class ClipManager {
     private var generalClipboard : NSPasteboard
     
-    init() {
+    static let general = ClipManager()
+    
+    private init() {
         self.generalClipboard = NSPasteboard.general
     }
+    
+    private var storedStrings : [String] = [String]()
     
     func readCurrentElement() -> String?{
         
@@ -36,5 +40,20 @@ class ClipManager {
         } else {
             print("error")
         }
+    }
+    func setValue(byIndex index:Int){
+        self.generalClipboard.prepareForNewContents(with: .currentHostOnly)
+        let string = self.storedStrings[index]
+        if self.generalClipboard.setString(string, forType: NSPasteboard.PasteboardType.string) {
+            print("done")
+            print("set \(string)")
+        } else {
+            print("error")
+        }
+        
+    }
+    
+    func pushNewString(_ string:String){
+        self.storedStrings.push(newElement: string, maxTail: 4)
     }
 }

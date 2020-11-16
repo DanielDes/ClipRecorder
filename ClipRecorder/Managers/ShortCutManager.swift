@@ -19,22 +19,19 @@ extension KeyboardShortcuts.Name {
 
 class ShortCutManager {
     static let shared = ShortCutManager()
+    private let shortcutValue : [Int: KeyboardShortcuts.Name] = [ 0: .default1,
+                                                                    1: .default2,
+                                                                   2: .default3,
+                                                                   3: .default4]
     
     private init(){
         
     }
     
-    func setUpFunctions(){
-        let shortcutValue : [KeyboardShortcuts.Name : Int] = [.default1: 1,
-                                                              .default2: 2,
-                                                              .default3: 3,
-                                                              .default4: 4,]
-        
-        for (shortcut,value) in shortcutValue {
-            KeyboardShortcuts.reset(shortcut)
-            KeyboardShortcuts.onKeyDown(for: shortcut) {
-                print(value)
-            }
+    func setUpShortcut(_ index: Int){
+        guard let shortcut = shortcutValue[index] else {return}
+        KeyboardShortcuts.onKeyDown(for: shortcut) {
+            ClipManager.general.setValue(byIndex: index)
         }
 
     }

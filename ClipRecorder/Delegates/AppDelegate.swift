@@ -18,7 +18,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.statusItem.button?.title = "CB Recorder!"
         self.statusItem.menu = ClipBoardMenu(title: "CB")
 
-        ShortCutManager.shared.setUpFunctions()
+        
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
