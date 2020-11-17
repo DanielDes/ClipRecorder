@@ -29,18 +29,23 @@ class ClipBoardMenu: NSMenu {
     override init(title: String) {
         super.init(title: title)
         self.setInitialOptions()
+        self.regisrteObserver()
     }
     
     required init(coder: NSCoder) {
         super.init(coder: coder)
         self.setInitialOptions()
+        self.regisrteObserver()
     }
     
+    
+    deinit {
+        self.unregisterObserver()
+    }
 
     
     private func setInitialOptions(){
         self.delegate = MenuDelegate.delegate
-        
         
        // Here logic to add hardcoded shortcuts
         
@@ -61,12 +66,22 @@ class ClipBoardMenu: NSMenu {
         
     }
     
+    private func regisrteObserver(){
+        NotificationCenter.default.addObserver(self, selector: #selector(updateMenuItemStatus(_:)), name: .userDidSetString, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateMenuItemStatus(_:)), name: .userDidUnsetString, object: nil)
+    }
+    private func unregisterObserver(){
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    
     fileprivate func createShortCutMenuItems(_ shortcuts:[KeyboardShortcuts.Name]){
         for shortcut in shortcuts{
             let menuItem = NSMenuItem(title: "No String", action: #selector(setCurrentValue(_:)), keyEquivalent: "")
             menuItem.target = self
             menuItem.tag = 1
             menuItem.setShortcut(for: shortcut)
+            menuItem.isEnabled = false
             self.addItem(menuItem)
         }
     }
@@ -84,6 +99,14 @@ class ClipBoardMenu: NSMenu {
         
         
     }
+    
+    @objc func updateMenuItemStatus(_ notification: NSNotification){
+        guard let index = notification.userInfo?[UserInfoKeys.index] as? Int,
+              let status = notification.userInfo?[UserInfoKeys.enable] as? Bool
+        else {return}
+        self.item(at: index)?.isEnabled = status
+    }
+    
     @objc func displayPreferences(_ sender: NSMenuItem){
         print("displaying personlization options")
     }

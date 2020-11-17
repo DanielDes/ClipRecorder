@@ -7,7 +7,7 @@
 
 import Cocoa
 
-class ViewController: NSViewController {
+class QuickPopoverVC: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

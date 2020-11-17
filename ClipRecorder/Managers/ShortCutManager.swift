@@ -19,6 +19,8 @@ extension KeyboardShortcuts.Name {
     static let unset2 = Self("unset2",default: Shortcut(.two,modifiers: ModifierCases.value(for: .unset)))
     static let unset3 = Self("unset3",default: Shortcut(.three,modifiers: ModifierCases.value(for: .unset)))
     static let unset4 = Self("unset4",default: Shortcut(.four,modifiers: ModifierCases.value(for: .unset)))
+    
+    
            
 }
 
@@ -43,6 +45,11 @@ extension ModifierCases {
     }
 }
 
+enum UserInfoKeys{
+    case enable
+    case index
+}
+
 class ShortCutManager {
     static let shared = ShortCutManager()
     private let shortcutValue : [KeyboardShortcuts.Name] = [.default1,
@@ -62,23 +69,28 @@ class ShortCutManager {
     func setUpShortcut(_ index: Int){
         let shortcut = shortcutValue[index]
         KeyboardShortcuts.onKeyDown(for: shortcut) {
+            let infoDict : [UserInfoKeys:Any] = [.enable : true,
+                                                 .index : index]
             
-            NotificationCenter.default.post(name: .userDidSetString, object: nil, userInfo: ["index" : index])
+            NotificationCenter.default.post(name: .userDidSetString, object: nil, userInfo: infoDict)
         }
 
     }
     
     func setAllShortcuts(){
-        for (value,shortcut) in shortcutValue.enumerated() {
+        for (index,shortcut) in shortcutValue.enumerated() {
             KeyboardShortcuts.onKeyDown(for: shortcut) {
-    
-                NotificationCenter.default.post(name: .userDidSetString, object: nil, userInfo: ["index" : value])
+                let infoDict : [UserInfoKeys: Any] = [.enable: true,
+                                                      .index: index]
+                NotificationCenter.default.post(name: .userDidSetString, object: nil, userInfo: infoDict)
             }
         }
         
         for (index,shortcut) in unsetShortcuts.enumerated() {
             KeyboardShortcuts.onKeyDown(for: shortcut) {
-                NotificationCenter.default.post(name: .userDidUnsetString,object: nil, userInfo: ["index":index])
+                let infoDict : [UserInfoKeys: Any] = [.enable: true,
+                                                      .index: index]
+                NotificationCenter.default.post(name: .userDidUnsetString,object: nil, userInfo: infoDict)
             }
         }
     }

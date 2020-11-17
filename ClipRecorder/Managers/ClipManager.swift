@@ -30,20 +30,20 @@ class ClipManager {
     
     
     @objc func handleShortCutEvent(_ notification: NSNotification){
-        guard let index = notification.userInfo?["index"] as? Int else {return}
+        guard let index = notification.userInfo?[UserInfoKeys.index] as? Int else {return}
         print("pressed index \(index)")
         guard let current = self.readCurrentElement() else {return}
         
         if self.storedStrings.contains(current) {
             self.setCurrentValue(string: self.storedStrings[index])
         } else {
-            self.storedStrings[index] = readCurrentElement() ?? ""
+            self.storedStrings[index] = current
         }
     }
     
     
     @objc func unsetString(_ notification: NSNotification){
-        guard let index = notification.userInfo?["index"] as? Int else {return}
+        guard let index = notification.userInfo?[UserInfoKeys.index] as? Int else {return}
         print("unsetting index \(index)")
         self.storedStrings[index] = ""
     }
