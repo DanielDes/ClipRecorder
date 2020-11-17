@@ -11,19 +11,17 @@ import KeyboardShortcuts
 class ClipBoardMenu: NSMenu {
     
     let CBManager = ClipManager.general
+    let shortCutManager = ShortCutManager.shared
+    
     private var firstOption : NSMenuItem!
     
     private var clipboardString : String {
         return self.CBManager.readCurrentElement() ?? ""
     }
     
-    private var currentString = "" //Only to compare the displayed string
-    private var lastSavedString = "" //Only to know if we stored a new value
     
     
     private var storedStrings : [String] = [String]()
-    
-    private var storedStringInitialIndex = 2
     
     
     private var didSaveNewValue : Bool = false
@@ -38,14 +36,15 @@ class ClipBoardMenu: NSMenu {
         self.setInitialOptions()
     }
     
+
+    
     private func setInitialOptions(){
         self.delegate = MenuDelegate.delegate
-        self.firstOption = NSMenuItem(title: "Save \"\(clipboardString.truncate(length:30))\"", action: #selector(saveCurrentValue), keyEquivalent: "")
-
-        self.firstOption.target = self
-        self.firstOption.tag = 0
-        self.addItem(firstOption)
-        self.addItem(NSMenuItem.separator())
+        
+        
+       // Here logic to add hardcoded shortcuts
+        
+        self.createShortCutMenuItems(self.shortCutManager.getShortcuts())
         
         self.addItem(NSMenuItem.separator())
         
@@ -53,60 +52,43 @@ class ClipBoardMenu: NSMenu {
         preferencesItem.target = self
         preferencesItem.tag = 2
         self.addItem(preferencesItem)
-        self.addItem(NSMenuItem.separator())
         
         let exitOptionItem = NSMenuItem(title: "Exit", action: #selector(exitApp(_:)), keyEquivalent: "")
         exitOptionItem.target = self
         exitOptionItem.tag = 3
         self.addItem(exitOptionItem)
+                
         
-        self.currentString = clipboardString
-        
-     
-        
-        
+    }
+    
+    fileprivate func createShortCutMenuItems(_ shortcuts:[KeyboardShortcuts.Name]){
+        for shortcut in shortcuts{
+            let menuItem = NSMenuItem(title: "No String", action: #selector(setCurrentValue(_:)), keyEquivalent: "")
+            menuItem.target = self
+            menuItem.tag = 1
+            menuItem.setShortcut(for: shortcut)
+            self.addItem(menuItem)
+        }
     }
     
 
     fileprivate func refreshItems(){
-        if self.currentString != clipboardString {
-            self.currentString = clipboardString
-            self.firstOption.title = "Save \"\(clipboardString.truncate(length: 30))\""
+
+        let storedStrings = self.CBManager.getStoredStrings()
+        
+        for (index,cbString) in storedStrings.enumerated() {
+            guard let item = self.item(at: index) else {return}
+            
+            item.title = cbString.truncate(length: 20)
         }
         
-        guard didSaveNewValue else {return}
         
-        for (index,storedString) in storedStrings.enumerated() {
-            guard let item = self.item(at: index + storedStringInitialIndex) else {return}
-            
-            if item.tag == 1{ //The string menu option has already been created
-                item.title = storedString.truncate(length: 30)
-            } else {
-                let newItem = NSMenuItem(title:storedString.truncate(length: 30), action:#selector(setCurrentValue(_:)), keyEquivalent: "\(index + 1)")
-                ShortCutManager.shared.setUpShortcut(index)
-                newItem.keyEquivalentModifierMask = NSEvent.ModifierFlags(arrayLiteral: [.option,.shift])
-                newItem.target = self
-                newItem.tag = 1
-                self.insertItem(newItem, at: index + storedStringInitialIndex)
-            }
-            
-        }
-        
-        didSaveNewValue = false
     }
     @objc func displayPreferences(_ sender: NSMenuItem){
         print("displaying personlization options")
     }
     
-    @objc func saveCurrentValue(_ sender: NSMenuItem){
-    
-        if self.storedStrings.contains(clipboardString) {return}
-        self.didSaveNewValue = true
-        self.lastSavedString = clipboardString
-        self.storedStrings.push(newElement: clipboardString, maxTail: 4)
-        self.CBManager.pushNewString(clipboardString)
-        print(self.storedStrings)
-    }
+
     @objc func setCurrentValue(_ sender: NSMenuItem){
         let title = sender.title
         print("Setting title \(title)")

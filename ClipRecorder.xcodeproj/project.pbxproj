@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C10960492562E5B800BB3A55 /* NotificationName++.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10960482562E5B800BB3A55 /* NotificationName++.swift */; };
 		C1276647255B58C800553686 /* Array+push.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1276646255B58C800553686 /* Array+push.swift */; };
 		C1497743255B525400339C75 /* String+Truncate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1497742255B525400339C75 /* String+Truncate.swift */; };
 		C14F0889255A26EF00E237E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14F0888255A26EF00E237E8 /* AppDelegate.swift */; };
@@ -23,6 +24,7 @@
 /* Begin PBXFileReference section */
 		2058449879A3829C0D7BDF98 /* Pods_ClipRecorder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClipRecorder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6233057ED0687896E04A37C4 /* Pods-ClipRecorder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClipRecorder.release.xcconfig"; path = "Target Support Files/Pods-ClipRecorder/Pods-ClipRecorder.release.xcconfig"; sourceTree = "<group>"; };
+		C10960482562E5B800BB3A55 /* NotificationName++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "NotificationName++.swift"; path = "ClipRecorder/Extensions/NotificationName++.swift"; sourceTree = SOURCE_ROOT; };
 		C1276646255B58C800553686 /* Array+push.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+push.swift"; sourceTree = "<group>"; };
 		C1497742255B525400339C75 /* String+Truncate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Truncate.swift"; sourceTree = "<group>"; };
 		C14F0885255A26EF00E237E8 /* ClipRecorder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClipRecorder.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +73,7 @@
 		C1497745255B527000339C75 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				C10960482562E5B800BB3A55 /* NotificationName++.swift */,
 				C1497742255B525400339C75 /* String+Truncate.swift */,
 				C1276646255B58C800553686 /* Array+push.swift */,
 			);
@@ -252,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C18507CF255C4E6F009E8DD2 /* EventManager.swift in Sources */,
+				C10960492562E5B800BB3A55 /* NotificationName++.swift in Sources */,
 				C1497743255B525400339C75 /* String+Truncate.swift in Sources */,
 				C14F088B255A26EF00E237E8 /* ViewController.swift in Sources */,
 				C18507D0255C4E6F009E8DD2 /* ClipManager.swift in Sources */,

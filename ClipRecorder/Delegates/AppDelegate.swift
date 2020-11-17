@@ -12,12 +12,12 @@ import KeyboardShortcuts
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         self.statusItem.button?.title = "CB Recorder!"
         self.statusItem.menu = ClipBoardMenu(title: "CB")
-
+        ShortCutManager.shared.setAllShortcuts()
         
     }
 

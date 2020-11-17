@@ -14,12 +14,42 @@ class ClipManager {
     private var generalClipboard : NSPasteboard
     
     static let general = ClipManager()
+    private var storedStrings : [String]
     
     private init() {
         self.generalClipboard = NSPasteboard.general
+        self.storedStrings = Array.init(repeating: "", count: 4)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleShortCutEvent(_:)), name: .userDidSetString, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(unsetString(_:)), name: .userDidUnsetString, object: nil)
+    }
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
-    private var storedStrings : [String] = [String]()
+    
+    
+    @objc func handleShortCutEvent(_ notification: NSNotification){
+        guard let index = notification.userInfo?["index"] as? Int else {return}
+        print("pressed index \(index)")
+        guard let current = self.readCurrentElement() else {return}
+        
+        if self.storedStrings.contains(current) {
+            self.setCurrentValue(string: self.storedStrings[index])
+        } else {
+            self.storedStrings[index] = readCurrentElement() ?? ""
+        }
+    }
+    
+    
+    @objc func unsetString(_ notification: NSNotification){
+        guard let index = notification.userInfo?["index"] as? Int else {return}
+        print("unsetting index \(index)")
+        self.storedStrings[index] = ""
+    }
+    func getStoredStrings() -> [String] {
+        return self.storedStrings
+    }
     
     func readCurrentElement() -> String?{
         
@@ -41,19 +71,9 @@ class ClipManager {
             print("error")
         }
     }
-    func setValue(byIndex index:Int){
-        self.generalClipboard.prepareForNewContents(with: .currentHostOnly)
-        let string = self.storedStrings[index]
-        if self.generalClipboard.setString(string, forType: NSPasteboard.PasteboardType.string) {
-            print("done")
-            print("set \(string)")
-        } else {
-            print("error")
-        }
-        
-    }
+
     
-    func pushNewString(_ string:String){
-        self.storedStrings.push(newElement: string, maxTail: 4)
+    func pushNewString(_ string:String, tail: Int = 4){
+        self.storedStrings.push(newElement: string, maxTail: tail)
     }
 }
