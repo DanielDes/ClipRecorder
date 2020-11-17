@@ -20,7 +20,7 @@ extension KeyboardShortcuts.Name {
     static let unset3 = Self("unset3",default: Shortcut(.three,modifiers: ModifierCases.value(for: .unset)))
     static let unset4 = Self("unset4",default: Shortcut(.four,modifiers: ModifierCases.value(for: .unset)))
     
-    
+    static let quickView = Self("quicView",default: Shortcut(.zero,modifiers: ModifierCases.value(for: .set)))
            
 }
 
@@ -48,6 +48,7 @@ extension ModifierCases {
 enum UserInfoKeys{
     case enable
     case index
+    case displayQuickView
 }
 
 class ShortCutManager {
@@ -92,6 +93,16 @@ class ShortCutManager {
                                                       .index: index]
                 NotificationCenter.default.post(name: .userDidUnsetString,object: nil, userInfo: infoDict)
             }
+        }
+        
+        KeyboardShortcuts.onKeyDown(for: KeyboardShortcuts.Name.quickView){
+            let infoDict : [UserInfoKeys: Any] = [.displayQuickView: true]
+            NotificationCenter.default.post(name: .willShowQuickView, object: nil, userInfo: infoDict)
+        }
+        
+        KeyboardShortcuts.onKeyUp(for: KeyboardShortcuts.Name.quickView){
+            let infoDict : [UserInfoKeys: Any] = [.displayQuickView: true]
+            NotificationCenter.default.post(name: .willDismissQuicView, object: nil, userInfo: infoDict)
         }
     }
     
