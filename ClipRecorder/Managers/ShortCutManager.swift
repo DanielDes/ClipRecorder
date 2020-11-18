@@ -105,9 +105,21 @@ class ShortCutManager {
             NotificationCenter.default.post(name: .willDismissQuicView, object: nil, userInfo: infoDict)
         }
     }
-    
     func getShortcuts() -> [KeyboardShortcuts.Name]{
-        return shortcutValue
+        return self.shortcutValue
     }
-    
+    func getAllShortcutsKey() -> [String]{
+        return self.shortcutValue.map { (name) -> String in
+            return self.getShortcutKeybinding(name: name)!
+            
+        }
+    }
+
+    func getShortcutKeybinding(name: KeyboardShortcuts.Name) -> String?{
+        guard let shortcut = KeyboardShortcuts.getShortcut(for: name) else {return nil}
+        return shortcut.description
+    }
+    func getNumberShortcuts() -> Int {
+        return self.shortcutValue.count
+    }
 }

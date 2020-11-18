@@ -12,14 +12,10 @@ import KeyboardShortcuts
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-    private var quickViewPopover : QuickViewController!
+    private var quickViewPopover : NSPopover!
     
     
-    private var quickWindow : NSWindow = NSWindow(contentRect: NSMakeRect(100,
-                                                                          200,
-                                                                          100,
-                                                                          100),
-                                                  styleMask: [.fullSizeContentView], backing: .buffered, defer: false)
+    
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
@@ -43,8 +39,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let _ = self.quickViewPopover {return}
         let storyboard = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: nil)
         guard let vc = storyboard.instantiateController(withIdentifier: "QuickPopoverVC") as? QuickViewController else {return}
-        self.quickViewPopover = vc
-        self.quickWindow.makeKeyAndOrderFront(nil)
+        
+        let height = CGFloat(QuickViewController.cellHeight * (CGFloat(ShortCutManager.shared.getNumberShortcuts()) + 2.0))
+        vc.preferredContentSize = NSSize(width: 300,
+                                         height: height)
+        self.quickViewPopover = NSPopover()
+        self.quickViewPopover.behavior = .transient
+        self.quickViewPopover.contentViewController = vc
+        quickViewPopover.show(relativeTo: self.statusItem.button!.bounds,
+                              of: self.statusItem.button!, preferredEdge: .minY)
         
         
     }
@@ -53,8 +56,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         guard let quickView = self.quickViewPopover else {return}
         
         print("Done")
+        self.quickViewPopover.performClose(nil)
         self.quickViewPopover = nil
-        self.quickWindow.orderOut(nil)
+        
         
     }
     
