@@ -18,13 +18,15 @@ class QuickViewController: NSViewController {
         return ClipManager.general.getStoredStrings()
     }()
     static let cellHeight : CGFloat = 17.0
+    static let viewWIdth : CGFloat = 250
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
         // Do any additional setup after loading the view.
+        self.view.wantsLayer = true
+        self.view.layer?.cornerRadius = 18
     }
 
 
@@ -42,7 +44,7 @@ class QuickViewController: NSViewController {
 
 extension QuickViewController : NSTableViewDelegate,NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
-        print(self.shortcutsRegistered.count)
+        
         return self.shortcutsRegistered.count
         
     }
@@ -51,9 +53,9 @@ extension QuickViewController : NSTableViewDelegate,NSTableViewDataSource {
         return QuickViewController.cellHeight
     }
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        print(3)
+        
         guard let vw = tableView.makeView(withIdentifier: tableColumn!.identifier, owner: self) as? NSTableCellView else {return nil}
-        print(2)
+        
         if tableColumn?.title == "Data"{
             vw.textField?.stringValue = self.stringRegistered[row]
         } else {
