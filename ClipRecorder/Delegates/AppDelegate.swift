@@ -12,7 +12,6 @@ import KeyboardShortcuts
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-    private var quickViewPopover : NSPopover!
     
     //This only if i take the ns window aproach
     private var window : NSWindow!
@@ -31,12 +30,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
-        self.statusItem.button?.title = "CB Recorder!"
+        
+        
+        self.statusItem.button!.image = NSImage(named: NSImage.Name("clipy_filled"))
         self.statusItem.menu = ClipBoardMenu(title: "CB")
         ShortCutManager.shared.setAllShortcuts()
         NotificationCenter.default.addObserver(self, selector: #selector(self.dislpayQuickView(_:)), name: .willShowQuickView, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.dismissQuickView(_:)), name: .willDismissQuicView, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(self.willEnterFullScreen(_:)), name: NSWindow.didChangeOcclusionStateNotification, object: nil)
+
         
     }
 
@@ -45,9 +46,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NotificationCenter.default.removeObserver(self)
     }
     
-    @objc func test(_ sender: NSMenuItem){
-        print("Test")
-    }
+
     @objc func dislpayQuickView(_ sender: NSMenuItem){
 
         self.previousRunningApp = NSWorkspace.shared.frontmostApplication
@@ -65,9 +64,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.window.makeKeyAndOrderFront(nil)
         self.window.alphaValue = 0
         self.window.backgroundColor = .clear
-        guard let constraints = window?.contentView else {
-          return
-        }
+
 
         NSAnimationContext.runAnimationGroup { (context) in
             context.duration = 0.3
@@ -97,15 +94,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         
     }
-    @objc func willEnterFullScreen(_ sender: NSNotification){
-        print("Detected FS mode")
-        print(NSMenu.menuBarVisible())
-        
-        let rectButton = self.statusItem.button!.convert(self.statusItem.button!.bounds, to: nil)
-        print("This is rec tbutton \(rectButton)")
-        let rectScreen = self.statusItem.button!.window?.convertToScreen(rectButton)
-        print(rectScreen?.minY)
-    }
+
     
 
 }
