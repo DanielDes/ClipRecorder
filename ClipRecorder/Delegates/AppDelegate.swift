@@ -80,7 +80,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         guard let _ = self.window else {return}
         
         NSAnimationContext.runAnimationGroup { (context) in
-            context.duration = 0.1
+            context.duration = 0.2
             window.animator().alphaValue = 0
         } completionHandler: {
             self.window.close()
