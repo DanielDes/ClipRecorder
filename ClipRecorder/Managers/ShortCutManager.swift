@@ -46,13 +46,14 @@ extension ModifierCases {
 }
 
 enum UserInfoKeys{
-    case enable
+    case didSetData
     case index
     case displayQuickView
+    case data
 }
 
 class ShortCutManager {
-    static let shared = ShortCutManager()
+//    static let shared = ShortCutManager()
     private let shortcutValue : [KeyboardShortcuts.Name] = [.default1,
                                                             .default2,
                                                             .default3,
@@ -61,60 +62,71 @@ class ShortCutManager {
                                                              .unset2,
                                                              .unset3,
                                                              .unset4]
+    private let stringKeys : [String]
+    private let clipboardManager : ClipManager
     
-    private init(){
-        
-    }
-
-    
-    func setUpShortcut(_ index: Int){
-        let shortcut = shortcutValue[index]
-        KeyboardShortcuts.onKeyDown(for: shortcut) {
-            let infoDict : [UserInfoKeys:Any] = [.enable : true,
-                                                 .index : index]
+    init(clipboardManager: ClipManager){
+        self.clipboardManager = clipboardManager
+        self.stringKeys = shortcutValue.map { (name) -> String in
+            guard let shortcut = KeyboardShortcuts.getShortcut(for: name) else {return ""}
+            return shortcut.description
             
-            NotificationCenter.default.post(name: .userDidSetString, object: nil, userInfo: infoDict)
         }
-
     }
+
     
+
     func setAllShortcuts(){
         for (index,shortcut) in shortcutValue.enumerated() {
             KeyboardShortcuts.onKeyDown(for: shortcut) {
-                let infoDict : [UserInfoKeys: Any] = [.enable: true,
-                                                      .index: index]
-                NotificationCenter.default.post(name: .userDidSetString, object: nil, userInfo: infoDict)
+                guard let newString = self.clipboardManager.checkCurrentPasteboardValueIn(index: index) else {return}
+                
+                
+                let infoDict : [UserInfoKeys: Any] = [.didSetData: true,
+                                                      .index: index,
+                                                      .data: newString]
+                NotificationCenter.default.post(name: .dataShortcutPressed, object: nil, userInfo: infoDict)
             }
         }
         
         for (index,shortcut) in unsetShortcuts.enumerated() {
             KeyboardShortcuts.onKeyDown(for: shortcut) {
-                let infoDict : [UserInfoKeys: Any] = [.enable: true,
+                self.clipboardManager.unsetString(at: index)
+                let infoDict : [UserInfoKeys: Any] = [.didSetData: false,
                                                       .index: index]
-                NotificationCenter.default.post(name: .userDidUnsetString,object: nil, userInfo: infoDict)
+                NotificationCenter.default.post(name: .dataShortcutPressed,object: nil, userInfo: infoDict)
             }
         }
         
         KeyboardShortcuts.onKeyDown(for: KeyboardShortcuts.Name.quickView){
-            let infoDict : [UserInfoKeys: Any] = [.displayQuickView: true]
-            NotificationCenter.default.post(name: .willShowQuickView, object: nil, userInfo: infoDict)
+            let storedData = self.clipboardManager.getStoredStrings()
+            //Carefull with that reference
+            let stringShortCut = self.stringKeys
+            let data = [[Any]](arrayLiteral: stringShortCut,storedData)
+            
+            
+            
+            let infoDict : [UserInfoKeys: Any] = [.displayQuickView: true,
+                                                  .data: data]
+            NotificationCenter.default.post(name: .quickViewShortcutStateChanged, object: nil, userInfo: infoDict)
         }
         
         KeyboardShortcuts.onKeyUp(for: KeyboardShortcuts.Name.quickView){
-            let infoDict : [UserInfoKeys: Any] = [.displayQuickView: true]
-            NotificationCenter.default.post(name: .willDismissQuicView, object: nil, userInfo: infoDict)
+            let infoDict : [UserInfoKeys: Any] = [.displayQuickView: false]
+            NotificationCenter.default.post(name: .quickViewShortcutStateChanged, object: nil, userInfo: infoDict)
         }
     }
     func getShortcuts() -> [KeyboardShortcuts.Name]{
         return self.shortcutValue
     }
+    //TO be removed
     func getAllShortcutsKey() -> [String]{
         return self.shortcutValue.map { (name) -> String in
             return self.getShortcutKeybinding(name: name)!
             
         }
     }
-
+    
     func getShortcutKeybinding(name: KeyboardShortcuts.Name) -> String?{
         guard let shortcut = KeyboardShortcuts.getShortcut(for: name) else {return nil}
         return shortcut.description

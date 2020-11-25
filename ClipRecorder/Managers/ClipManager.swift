@@ -13,40 +13,44 @@ import AppKit
 class ClipManager {
     private var generalClipboard : NSPasteboard
     
-    static let general = ClipManager()
+//    static let general = ClipManager()
     private var storedStrings : [String]
     
-    private init() {
+    init() {
         self.generalClipboard = NSPasteboard.general
         self.storedStrings = Array.init(repeating: "", count: 4)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(handleShortCutEvent(_:)), name: .userDidSetString, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(unsetString(_:)), name: .userDidUnsetString, object: nil)
+
     }
     deinit {
-        NotificationCenter.default.removeObserver(self)
+        
     }
     
     
     
-    @objc func handleShortCutEvent(_ notification: NSNotification){
-        guard let index = notification.userInfo?[UserInfoKeys.index] as? Int else {return}
-        print("pressed index \(index)")
-        guard let current = self.readCurrentElement() else {return}
+    
+    /// Sets the current value in Pasteboard in the provided index
+    /// - Parameter index: Index of the current value of the pasteboard
+    /// - Returns: Returns the current value if it did not existed ont the array, if the value is already in the array the value is written to the pasteboard
+    func checkCurrentPasteboardValueIn(index: Int) -> String?{
         
-        if self.storedStrings.contains(current) {
-            self.setCurrentValue(string: self.storedStrings[index])
-        } else {
+        guard let current = self.readCurrentElement() else {return nil}
+        
+        //On this option the user typed the shortcut to set the string into the keyboard
+        if self.storedStrings.contains(current){
+            self.setCurrentValue(string:current)
+            return nil
+        } else { //The user is setting a new string
             self.storedStrings[index] = current
+            return current
         }
     }
     
     
-    @objc func unsetString(_ notification: NSNotification){
-        guard let index = notification.userInfo?[UserInfoKeys.index] as? Int else {return}
-        print("unsetting index \(index)")
+    func unsetString(at index: Int){
         self.storedStrings[index] = ""
     }
+    
     func getStoredStrings() -> [String] {
         return self.storedStrings
     }

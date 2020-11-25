@@ -10,8 +10,8 @@ import KeyboardShortcuts
 
 class ClipBoardMenu: NSMenu {
     
-    let CBManager = ClipManager.general
-    let shortCutManager = ShortCutManager.shared
+    private var CBManager : ClipManager!
+    private var shortCutManager : ShortCutManager!
     
     private var firstOption : NSMenuItem!
     
@@ -25,9 +25,11 @@ class ClipBoardMenu: NSMenu {
     
     
     private var didSaveNewValue : Bool = false
-
-    override init(title: String) {
+    
+    init (title: String, cbManager: ClipManager, shortCutManager: ShortCutManager){
         super.init(title: title)
+        self.CBManager = cbManager
+        self.shortCutManager = shortCutManager
         self.setInitialOptions()
         self.regisrteObserver()
     }
@@ -45,7 +47,7 @@ class ClipBoardMenu: NSMenu {
 
     
     private func setInitialOptions(){
-        self.delegate = MenuDelegate.delegate
+        
         
        // Here logic to add hardcoded shortcuts
         
@@ -67,8 +69,8 @@ class ClipBoardMenu: NSMenu {
     }
     
     private func regisrteObserver(){
-        NotificationCenter.default.addObserver(self, selector: #selector(updateMenuItemStatus(_:)), name: .userDidSetString, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateMenuItemStatus(_:)), name: .userDidUnsetString, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateMenuItemStatus(_:)), name: .dataShortcutPressed, object: nil)
+        
     }
     private func unregisterObserver(){
         NotificationCenter.default.removeObserver(self)
@@ -77,7 +79,7 @@ class ClipBoardMenu: NSMenu {
     
     fileprivate func createShortCutMenuItems(_ shortcuts:[KeyboardShortcuts.Name]){
         for shortcut in shortcuts{
-            let menuItem = NSMenuItem(title: "No String", action: #selector(setCurrentValue(_:)), keyEquivalent: "")
+            let menuItem = NSMenuItem(title: "", action: #selector(setCurrentValue(_:)), keyEquivalent: "")
             menuItem.target = self
             menuItem.tag = 1
             menuItem.setShortcut(for: shortcut)
@@ -87,24 +89,23 @@ class ClipBoardMenu: NSMenu {
     }
     
 
-    fileprivate func refreshItems(){
 
-        let storedStrings = self.CBManager.getStoredStrings()
-        
-        for (index,cbString) in storedStrings.enumerated() {
-            guard let item = self.item(at: index) else {return}
-            
-            item.title = cbString.truncate(length: 20)
-        }
-        
-        
-    }
     
     @objc func updateMenuItemStatus(_ notification: NSNotification){
         guard let index = notification.userInfo?[UserInfoKeys.index] as? Int,
-              let status = notification.userInfo?[UserInfoKeys.enable] as? Bool
+              let didSetData = notification.userInfo?[UserInfoKeys.didSetData] as? Bool
         else {return}
-        self.item(at: index)?.isEnabled = status
+        
+        if didSetData{
+            guard let newString = notification.userInfo?[UserInfoKeys.data] as? String,
+                  let item = self.item(at:index) else {return}
+            item.title = newString.truncate(length: 20)
+            
+        } else {
+            guard let item = self.item(at: index) else {return}
+            item.title = ""
+        }
+        
     }
     
     @objc func displayPreferences(_ sender: NSMenuItem){
@@ -123,16 +124,5 @@ class ClipBoardMenu: NSMenu {
     }
 }
 
-class MenuDelegate :NSObject, NSMenuDelegate{
-    static fileprivate let delegate = MenuDelegate()
-    
-    fileprivate override init() {
-        
-    }
-    
-    func menuWillOpen(_ menu: NSMenu) {
-        print("Refreshing")
-        guard let menu = menu as? ClipBoardMenu else {return}
-        menu.refreshItems()
-    }
-}
+
+

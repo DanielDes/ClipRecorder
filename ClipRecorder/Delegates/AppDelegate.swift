@@ -17,6 +17,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var window : NSWindow!
     private var previousRunningApp : NSRunningApplication!
     
+    private var shortcutManager : ShortCutManager!
+    private let clipManager : ClipManager = ClipManager()
+    
     fileprivate var windowTopLeftCoordinate: CGPoint {
         guard let window = window, let barButton = statusItem.button else { return .zero }
         let rectInWindow = barButton.convert(barButton.bounds, to: nil)
@@ -30,13 +33,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
-        
+        shortcutManager = ShortCutManager(clipboardManager: clipManager)
         
         self.statusItem.button!.image = NSImage(named: NSImage.Name("clipy_filled"))
-        self.statusItem.menu = ClipBoardMenu(title: "CB")
-        ShortCutManager.shared.setAllShortcuts()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.dislpayQuickView(_:)), name: .willShowQuickView, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.dismissQuickView(_:)), name: .willDismissQuicView, object: nil)
+        shortcutManager.setAllShortcuts()
+        self.statusItem.menu = ClipBoardMenu(title: "CB",cbManager: clipManager,shortCutManager: shortcutManager)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleQuickViewEvent(_:)), name: .quickViewShortcutStateChanged, object: nil)
+       
 
         
     }
@@ -45,9 +48,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to tear down your application
         NotificationCenter.default.removeObserver(self)
     }
+    @objc func handleQuickViewEvent(_ sender: NSNotification){
+        guard let info = sender.userInfo,
+              let displayState = info[UserInfoKeys.displayQuickView] as? Bool else {return}
+        
+        if displayState{
+            guard let data = info[UserInfoKeys.data] as? [[Any]] else {
+                return
+            }
+            self.dislpayQuickView(data: data)
+        } else {
+            self.dismissQuickView()
+        }
+    }
     
 
-    @objc func dislpayQuickView(_ sender: NSMenuItem){
+    @objc func dislpayQuickView(data: [[Any]]){
 
         self.previousRunningApp = NSWorkspace.shared.frontmostApplication
         let value =  NSRunningApplication.current.activate(options: [.activateIgnoringOtherApps,.activateAllWindows])
@@ -55,9 +71,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let _ = self.window {return}
         let storyboard = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: nil)
         guard let vc = storyboard.instantiateController(withIdentifier: "QuickPopoverVC") as? QuickViewController else {return}
+        vc.dataPerShortcut = data
         self.window = NSWindow(contentViewController: vc)
         self.window.setFrameTopLeftPoint(self.windowTopLeftCoordinate)
-        let height = CGFloat(QuickViewController.cellHeight * (CGFloat(ShortCutManager.shared.getNumberShortcuts()) + 2.0))
+        let height = CGFloat(QuickViewController.cellHeight * (CGFloat(shortcutManager.getNumberShortcuts()) + 2.0))
         self.window.setContentSize(NSSize(width: self.window.frame.width,
                                           height: height))
         self.window.styleMask = [.fullSizeContentView]
@@ -74,7 +91,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         
     }
-    @objc func dismissQuickView(_ sender: NSMenuItem){
+    @objc func dismissQuickView(){
         
 
         guard let _ = self.window else {return}

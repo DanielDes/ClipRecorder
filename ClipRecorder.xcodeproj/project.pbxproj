@@ -17,7 +17,9 @@
 		C14F0890255A26F100E237E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C14F088E255A26F100E237E8 /* Main.storyboard */; };
 		C14F089D255A307000E237E8 /* ClipBoardMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14F089C255A307000E237E8 /* ClipBoardMenu.swift */; };
 		C16604A725628B1100F6B859 /* ShortCutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16604A625628B1100F6B859 /* ShortCutManager.swift */; };
-		C18507CF255C4E6F009E8DD2 /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18507CD255C4E6F009E8DD2 /* EventManager.swift */; };
+		C16867C2256DF335009F8A34 /* QuickTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16867C1256DF335009F8A34 /* QuickTableViewDelegate.swift */; };
+		C16867C5256DF34B009F8A34 /* QuickTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16867C4256DF34B009F8A34 /* QuickTableViewDataSource.swift */; };
+		C16867CA256DFA1F009F8A34 /* Dictionary++.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16867C9256DFA1F009F8A34 /* Dictionary++.swift */; };
 		C18507D0255C4E6F009E8DD2 /* ClipManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18507CE255C4E6F009E8DD2 /* ClipManager.swift */; };
 		D672400E75FAC374D6C0BC9E /* Pods_ClipRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2058449879A3829C0D7BDF98 /* Pods_ClipRecorder.framework */; };
 /* End PBXBuildFile section */
@@ -38,7 +40,9 @@
 		C14F0892255A26F100E237E8 /* ClipRecorder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ClipRecorder.entitlements; sourceTree = "<group>"; };
 		C14F089C255A307000E237E8 /* ClipBoardMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipBoardMenu.swift; sourceTree = "<group>"; };
 		C16604A625628B1100F6B859 /* ShortCutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortCutManager.swift; sourceTree = "<group>"; };
-		C18507CD255C4E6F009E8DD2 /* EventManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
+		C16867C1256DF335009F8A34 /* QuickTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTableViewDelegate.swift; sourceTree = "<group>"; };
+		C16867C4256DF34B009F8A34 /* QuickTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTableViewDataSource.swift; sourceTree = "<group>"; };
+		C16867C9256DFA1F009F8A34 /* Dictionary++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary++.swift"; sourceTree = "<group>"; };
 		C18507CE255C4E6F009E8DD2 /* ClipManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClipManager.swift; sourceTree = "<group>"; };
 		E02DE3EA8EEECECB58FA6643 /* Pods-ClipRecorder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClipRecorder.debug.xcconfig"; path = "Target Support Files/Pods-ClipRecorder/Pods-ClipRecorder.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,6 +82,7 @@
 				C10960482562E5B800BB3A55 /* NotificationName++.swift */,
 				C1497742255B525400339C75 /* String+Truncate.swift */,
 				C1276646255B58C800553686 /* Array+push.swift */,
+				C16867C9256DFA1F009F8A34 /* Dictionary++.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -116,11 +121,20 @@
 			path = ClipRecorder;
 			sourceTree = "<group>";
 		};
+		C16867C7256DF356009F8A34 /* QuickView */ = {
+			isa = PBXGroup;
+			children = (
+				C14F088A255A26EF00E237E8 /* QuickViewController.swift */,
+				C16867C1256DF335009F8A34 /* QuickTableViewDelegate.swift */,
+				C16867C4256DF34B009F8A34 /* QuickTableViewDataSource.swift */,
+			);
+			path = QuickView;
+			sourceTree = "<group>";
+		};
 		C18507CC255C4E6F009E8DD2 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
 				C16604A625628B1100F6B859 /* ShortCutManager.swift */,
-				C18507CD255C4E6F009E8DD2 /* EventManager.swift */,
 				C18507CE255C4E6F009E8DD2 /* ClipManager.swift */,
 			);
 			name = Managers;
@@ -139,7 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				C14F089C255A307000E237E8 /* ClipBoardMenu.swift */,
-				C14F088A255A26EF00E237E8 /* QuickViewController.swift */,
+				C16867C7256DF356009F8A34 /* QuickView */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -257,7 +271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C18507CF255C4E6F009E8DD2 /* EventManager.swift in Sources */,
+				C16867CA256DFA1F009F8A34 /* Dictionary++.swift in Sources */,
 				C10960492562E5B800BB3A55 /* NotificationName++.swift in Sources */,
 				C146CBCA256473CF0025ACF7 /* ScreenDimensions.swift in Sources */,
 				C1497743255B525400339C75 /* String+Truncate.swift in Sources */,
@@ -265,8 +279,10 @@
 				C18507D0255C4E6F009E8DD2 /* ClipManager.swift in Sources */,
 				C14F0889255A26EF00E237E8 /* AppDelegate.swift in Sources */,
 				C1276647255B58C800553686 /* Array+push.swift in Sources */,
+				C16867C5256DF34B009F8A34 /* QuickTableViewDataSource.swift in Sources */,
 				C14F089D255A307000E237E8 /* ClipBoardMenu.swift in Sources */,
 				C16604A725628B1100F6B859 /* ShortCutManager.swift in Sources */,
+				C16867C2256DF335009F8A34 /* QuickTableViewDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

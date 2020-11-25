@@ -11,8 +11,7 @@ import AppKit
 
 extension NSNotification.Name {
     
-    static let userDidSetString = Self(rawValue: "userDidSetString")
-    static let userDidUnsetString = Self(rawValue: "userDidUnsetString")
-    static let willShowQuickView = Self(rawValue: "willShowQuickView")
-    static let willDismissQuicView = Self(rawValue: "WillDismissQuickView")
+    static let dataShortcutPressed = Self(rawValue: "dataShortcutPressed")
+    
+    static let quickViewShortcutStateChanged = Self(rawValue: "quickViewShortcutStateChanged")
 }
