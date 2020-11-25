@@ -21,6 +21,8 @@
 		C16867C5256DF34B009F8A34 /* QuickTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16867C4256DF34B009F8A34 /* QuickTableViewDataSource.swift */; };
 		C16867CA256DFA1F009F8A34 /* Dictionary++.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16867C9256DFA1F009F8A34 /* Dictionary++.swift */; };
 		C18507D0255C4E6F009E8DD2 /* ClipManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18507CE255C4E6F009E8DD2 /* ClipManager.swift */; };
+		C1C89106256E3C4C00EF61FE /* UserInfoKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C89105256E3C4C00EF61FE /* UserInfoKeys.swift */; };
+		C1C8910C256E3ED200EF61FE /* PreferencesLauncherDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C8910B256E3ED200EF61FE /* PreferencesLauncherDelegate.swift */; };
 		D672400E75FAC374D6C0BC9E /* Pods_ClipRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2058449879A3829C0D7BDF98 /* Pods_ClipRecorder.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,7 +31,7 @@
 		6233057ED0687896E04A37C4 /* Pods-ClipRecorder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClipRecorder.release.xcconfig"; path = "Target Support Files/Pods-ClipRecorder/Pods-ClipRecorder.release.xcconfig"; sourceTree = "<group>"; };
 		C10960482562E5B800BB3A55 /* NotificationName++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "NotificationName++.swift"; path = "ClipRecorder/Extensions/NotificationName++.swift"; sourceTree = SOURCE_ROOT; };
 		C1276646255B58C800553686 /* Array+push.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+push.swift"; sourceTree = "<group>"; };
-		C146CBC9256473CF0025ACF7 /* ScreenDimensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScreenDimensions.swift; path = ClipRecorder/ScreenDimensions.swift; sourceTree = SOURCE_ROOT; };
+		C146CBC9256473CF0025ACF7 /* ScreenDimensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScreenDimensions.swift; path = ClipRecorder/Structures/ScreenDimensions.swift; sourceTree = SOURCE_ROOT; };
 		C1497742255B525400339C75 /* String+Truncate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Truncate.swift"; sourceTree = "<group>"; };
 		C14F0885255A26EF00E237E8 /* ClipRecorder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClipRecorder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C14F0888255A26EF00E237E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -44,6 +46,8 @@
 		C16867C4256DF34B009F8A34 /* QuickTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTableViewDataSource.swift; sourceTree = "<group>"; };
 		C16867C9256DFA1F009F8A34 /* Dictionary++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary++.swift"; sourceTree = "<group>"; };
 		C18507CE255C4E6F009E8DD2 /* ClipManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClipManager.swift; sourceTree = "<group>"; };
+		C1C89105256E3C4C00EF61FE /* UserInfoKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoKeys.swift; sourceTree = "<group>"; };
+		C1C8910B256E3ED200EF61FE /* PreferencesLauncherDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesLauncherDelegate.swift; sourceTree = "<group>"; };
 		E02DE3EA8EEECECB58FA6643 /* Pods-ClipRecorder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClipRecorder.debug.xcconfig"; path = "Target Support Files/Pods-ClipRecorder/Pods-ClipRecorder.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,7 +112,8 @@
 		C14F0887255A26EF00E237E8 /* ClipRecorder */ = {
 			isa = PBXGroup;
 			children = (
-				C146CBC9256473CF0025ACF7 /* ScreenDimensions.swift */,
+				C1C8910A256E3EB500EF61FE /* Protocols */,
+				C1C89104256E3C3200EF61FE /* Structures */,
 				C1E70FD5255C4DFF00D8BE2E /* Controllers */,
 				C18507CC255C4E6F009E8DD2 /* Managers */,
 				C1497745255B527000339C75 /* Extensions */,
@@ -147,6 +152,23 @@
 				C14F0888255A26EF00E237E8 /* AppDelegate.swift */,
 			);
 			path = Delegates;
+			sourceTree = "<group>";
+		};
+		C1C89104256E3C3200EF61FE /* Structures */ = {
+			isa = PBXGroup;
+			children = (
+				C146CBC9256473CF0025ACF7 /* ScreenDimensions.swift */,
+				C1C89105256E3C4C00EF61FE /* UserInfoKeys.swift */,
+			);
+			path = Structures;
+			sourceTree = "<group>";
+		};
+		C1C8910A256E3EB500EF61FE /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				C1C8910B256E3ED200EF61FE /* PreferencesLauncherDelegate.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		C1E70FD5255C4DFF00D8BE2E /* Controllers */ = {
@@ -282,7 +304,9 @@
 				C16867C5256DF34B009F8A34 /* QuickTableViewDataSource.swift in Sources */,
 				C14F089D255A307000E237E8 /* ClipBoardMenu.swift in Sources */,
 				C16604A725628B1100F6B859 /* ShortCutManager.swift in Sources */,
+				C1C89106256E3C4C00EF61FE /* UserInfoKeys.swift in Sources */,
 				C16867C2256DF335009F8A34 /* QuickTableViewDelegate.swift in Sources */,
+				C1C8910C256E3ED200EF61FE /* PreferencesLauncherDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

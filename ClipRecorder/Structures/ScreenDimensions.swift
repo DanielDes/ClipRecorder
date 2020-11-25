@@ -10,13 +10,9 @@ import AppKit
 
 
 struct ScreenDimensions {
-
+    
     static let halfScreenWidth : CGFloat = CGFloat(NSScreen.main?.frame.width ?? 0 / 2)
-    
     static let halfScreenHeight : CGFloat = CGFloat(NSScreen.main?.frame.height ?? 0 / 2)
-    
-    
-    
     
 }
 

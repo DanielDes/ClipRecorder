@@ -45,12 +45,6 @@ extension ModifierCases {
     }
 }
 
-enum UserInfoKeys{
-    case didSetData
-    case index
-    case displayQuickView
-    case data
-}
 
 class ShortCutManager {
 //    static let shared = ShortCutManager()

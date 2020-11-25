@@ -22,11 +22,13 @@ class ClipBoardMenu: NSMenu {
     
     
     private var storedStrings : [String] = [String]()
+    private var preferenceDelegate : PreferencesLauncherDelegate!
     
     
     private var didSaveNewValue : Bool = false
     
-    init (title: String, cbManager: ClipManager, shortCutManager: ShortCutManager){
+    init (title: String, cbManager: ClipManager, shortCutManager: ShortCutManager,preferenceDelegate: PreferencesLauncherDelegate){
+        self.preferenceDelegate = preferenceDelegate
         super.init(title: title)
         self.CBManager = cbManager
         self.shortCutManager = shortCutManager
@@ -110,6 +112,10 @@ class ClipBoardMenu: NSMenu {
     
     @objc func displayPreferences(_ sender: NSMenuItem){
         print("displaying personlization options")
+        guard let delegate = self.preferenceDelegate else {return }
+        if delegate.launchPreferences() {
+            print("Launched preferences")
+        }
     }
     
 

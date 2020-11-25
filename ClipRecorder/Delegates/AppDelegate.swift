@@ -37,7 +37,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         self.statusItem.button!.image = NSImage(named: NSImage.Name("clipy_filled"))
         shortcutManager.setAllShortcuts()
-        self.statusItem.menu = ClipBoardMenu(title: "CB",cbManager: clipManager,shortCutManager: shortcutManager)
+        self.statusItem.menu = ClipBoardMenu(title: "CB",
+                                             cbManager: clipManager,
+                                             shortCutManager: shortcutManager,
+                                             preferenceDelegate: self)
         NotificationCenter.default.addObserver(self, selector: #selector(handleQuickViewEvent(_:)), name: .quickViewShortcutStateChanged, object: nil)
        
 
@@ -116,4 +119,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 }
 
-
+extension AppDelegate : PreferencesLauncherDelegate {
+    func launchPreferences() -> Bool {
+        print("Launching preferences")
+        return false
+    }
+}
